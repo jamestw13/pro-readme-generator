@@ -6,7 +6,7 @@ let promptUser = () => {
 	return inquirer.prompt([
 		{
 			type: 'input',
-			name: 'title',
+			name: 'Title',
 			message: 'Enter the projects title. (required) ',
 			validate: input => {
 				if (input) return true;
@@ -19,32 +19,32 @@ let promptUser = () => {
 
 		{
 			type: 'input',
-			name: 'description',
+			name: 'Description',
 			message: 'Enter a description of the project. ',
 		},
 		{
 			type: 'input',
-			name: 'installInstructions',
+			name: 'Installation',
 			message: 'Enter installation instructions. ',
 		},
 		{
 			type: 'input',
-			name: 'usageInfo',
+			name: 'Usage',
 			message: 'Enter usage information. ',
 		},
 		{
 			type: 'input',
-			name: 'contributionGuidelines',
+			name: 'Contributing',
 			message: 'Enter contribution guidelines. ',
 		},
 		{
 			type: 'input',
-			name: 'testInstructions',
+			name: 'Tests',
 			message: 'Enter test instructions. ',
 		},
 		{
 			type: 'list',
-			name: 'license',
+			name: 'License',
 			message: 'Choose a License (required). ',
 			choices: [
 				'None',
@@ -65,7 +65,7 @@ let promptUser = () => {
 		},
 		{
 			type: 'input',
-			name: 'github',
+			name: 'Github',
 			message: 'Contact info: Enter a github username. (required) ',
 			validate: input => {
 				if (input) return true;
@@ -77,10 +77,12 @@ let promptUser = () => {
 		},
 		{
 			type: 'input',
-			name: 'email',
+			name: 'Email',
 			message: 'Contact info: Enter an email address.',
 		},
 	]);
 };
 
-promptUser().then(data => console.log(data));
+promptUser().then(data => {
+	console.log(data);
+});

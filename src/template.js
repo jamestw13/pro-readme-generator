@@ -1,56 +1,59 @@
+const generateTOC = userInput => {
+	let toc = '';
+	for (let key in userInput) {
+		if (key != 'Title' && key !== 'Description' && key !== 'Github' && key !== 'Email' && data[key]) {
+			toc += `
+      * [${key}](#${key})`;
+		}
+	}
+};
+
 module.exports = userInput => {
+	// Validate user input
 	if (!userInput) {
 		return '';
 	}
 
-	const {
-		title,
-		description,
-		installInstructions,
-		usageInfo,
-		constributionGuidelines,
-		testInstructions,
-		license,
-		github,
-		email,
-	} = userInput;
+	const {title, description, install, usage, contributing, test, license, github, email} = userInput;
 
 	return `
   # ${title}
 
   ## Description 
-  
+
+  ![Badge](https://img.shields.io/badge/license-${license}-blue)
   ${description}
   
   ## Table of Contents
     
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Credits](#credits)
-  * [License](#license)
-  
-  
+  ${generateTOC(userInput)}
+  * [Questions](#Questions)
+
   ## Installation
   
-${installInstructions}
+${install}
     
   ## Usage 
   
-  ${usageInfo}
+  ${usage}
   
   ## License
   
-  The last section of a good README is a license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/)
-  
-  ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+  Implement license system
     
   ## Contributing
   
-  ${constributionGuidelines}
+  ${contributing}
   
   ## Tests
   
-  ${testInstructions}
+  ${test}
   
+## Questions
+
+[Contact ${github} with questions](https://www.github.com/${github})
+OR
+[Send and email](mailto:${email})
+
   `;
 };
