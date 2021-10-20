@@ -1,5 +1,7 @@
+// Use Inquirer from https://www.npmjs.com/package/inquirer
 const inquirer = require('inquirer');
 
+// Get user input
 let promptUser = () => {
 	return inquirer.prompt([
 		{
@@ -42,7 +44,7 @@ let promptUser = () => {
 		},
 		{
 			type: 'list',
-			name: 'License',
+			name: 'license',
 			message: 'Choose a License (required). ',
 			choices: [
 				'None',
