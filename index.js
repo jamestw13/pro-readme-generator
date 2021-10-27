@@ -1,5 +1,8 @@
 // Use Inquirer from https://www.npmjs.com/package/inquirer
 const inquirer = require('inquirer');
+const generateReadme = require('./src/template.js');
+
+const licenses = require('./src/licenses.json');
 
 // Get user input
 let promptUser = () => {
@@ -46,22 +49,7 @@ let promptUser = () => {
 			type: 'list',
 			name: 'License',
 			message: 'Choose a License (required). ',
-			choices: [
-				'None',
-				'Apache License 2.0',
-				'GNU General Public License v3.0',
-				'MIT License',
-				'BSD 2-Clause "Simplified" License',
-				'BSD 3-Clause "New" or "Revised" License',
-				'Boost Software License 1.0',
-				'Creative Commons Zero v1.0 Universal',
-				'Eclipse Public License 2.0',
-				'GNU Affero General Public License v3.0',
-				'GNU General Public License v2.0',
-				'GNU Lesser General Public License v3.0',
-				'Mozilla Public License 2.0',
-				'The Unlicense',
-			],
+			choices: Object.keys(licenses),
 		},
 		{
 			type: 'input',
@@ -83,6 +71,14 @@ let promptUser = () => {
 	]);
 };
 
-promptUser().then(data => {
-	console.log(data);
-});
+promptUser()
+	.then(data => {
+		// console.log(data);
+		return generateReadme(data);
+	})
+	.then(markdown => {
+		console.log(markdown);
+	})
+	.catch(err => {
+		console.log(err);
+	});

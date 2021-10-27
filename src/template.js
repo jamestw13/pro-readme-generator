@@ -1,11 +1,13 @@
 const generateTOC = userInput => {
+	console.log('in generateTOC', userInput);
 	let toc = '';
 	for (let key in userInput) {
-		if (key != 'Title' && key !== 'Description' && key !== 'Github' && key !== 'Email' && data[key]) {
+		if (key != 'Title' && key !== 'Description' && key !== 'Github' && key !== 'Email' && userInput[key]) {
 			toc += `
       * [${key}](#${key})`;
 		}
 	}
+	return toc;
 };
 
 module.exports = userInput => {
@@ -14,15 +16,15 @@ module.exports = userInput => {
 		return '';
 	}
 
-	const {title, description, install, usage, contributing, test, license, github, email} = userInput;
+	const {Title, Description, Install, Usage, Contributing, Tests, License, Github, Email} = userInput;
 
 	return `
-  # ${title}
+  # ${Title}
 
   ## Description 
 
-  ![Badge](https://img.shields.io/badge/license-${license}-blue)
-  ${description}
+  ![Badge](https://img.shields.io/badge/license-${License}-blue)
+  ${Description}
   
   ## Table of Contents
     
@@ -31,11 +33,11 @@ module.exports = userInput => {
 
   ## Installation
   
-${install}
+${Install}
     
   ## Usage 
   
-  ${usage}
+  ${Usage}
   
   ## License
   
@@ -43,17 +45,17 @@ ${install}
     
   ## Contributing
   
-  ${contributing}
+  ${Contributing}
   
   ## Tests
   
-  ${test}
+  ${Tests}
   
 ## Questions
 
-[Contact ${github} with questions](https://www.github.com/${github})
+[Contact ${Github} with questions](https://www.github.com/${Github})
 OR
-[Send and email](mailto:${email})
+[Send and email](mailto:${Email})
 
   `;
 };
