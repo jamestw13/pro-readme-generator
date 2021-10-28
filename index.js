@@ -1,9 +1,13 @@
-// Use Inquirer from https://www.npmjs.com/package/inquirer
+// Used Inquirer from https://www.npmjs.com/package/inquirer
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown.js');
+// Adapted license information collected and used by https://www.npmjs.com/package/github-licenses
 const licenses = require('./utils/licenses.json');
+// Importing Node file system library for writeFile function
 const fs = require('fs');
+// README.md template
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
+// Question array to be used by inquirer
 const questions = [
 	{
 		type: 'input',
@@ -110,11 +114,13 @@ const questions = [
 	},
 ];
 
-// Get user input
+// Starting function to run program
 const init = () => {
+	// Prompt user for input
 	return inquirer.prompt(questions);
 };
 
+// Node file system - write filled out template to file
 const writeToFile = (filename, data) => {
 	return new Promise((resolve, reject) => {
 		fs.writeFile(filename, data, err => {
@@ -122,6 +128,7 @@ const writeToFile = (filename, data) => {
 				reject(err);
 				return;
 			}
+			console.log('README created in /dist directory');
 			resolve({
 				ok: true,
 				message: 'file created',
@@ -130,15 +137,17 @@ const writeToFile = (filename, data) => {
 	});
 };
 
+// Collect user input
 init()
+	// Send collected data into markdown file template
 	.then(data => {
-		// console.log(data);
 		return generateMarkdown(data);
 	})
+	// Create file from filled in template
 	.then(data => {
-		// console.log(data);
 		writeToFile('./dist/README.md', data);
 	})
+	// Error handling
 	.catch(err => {
 		console.log(err);
 	});

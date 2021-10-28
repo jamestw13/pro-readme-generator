@@ -37,6 +37,10 @@ Clone this repository. Dependencies are included in the manifest and include inq
 
 ISC
 
+## Usage
+
+![screencapture]
+
 ## Contributing
 
 You're welcome to write issues on this repository or fork and do your own development.

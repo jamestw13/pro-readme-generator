@@ -4,18 +4,18 @@ const licenses = require('./licenses.json');
 // A function that returns the license link
 // If there is no license, return an empty string
 const renderLicenseLink = license => {
-	if (!license) {
-		return '';
+	if (!licenses[license]) {
+		return 'No license chosen';
 	}
 
-	return ``;
+	return `[Information about your license may be found here](https://opensource.org/licenses)`;
 };
 
 // A function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 const renderLicenseBadge = license => {
 	if (!license) {
-		return '';
+		return 'No license chosen';
 	}
 	const urlLicense = license.replace(/ /g, '_').replace(/-/g, '--');
 	return `![Badge](https://img.shields.io/badge/license-${urlLicense}-blue)`;
@@ -30,6 +30,7 @@ const renderLicenseSection = license => {
 	return `${licenses[license]}`;
 };
 
+// Main function for running the template
 const generateMarkdown = data => {
 	// Validate user input
 	if (!data) {
@@ -60,6 +61,7 @@ ${Installation}
 ${Usage}
 
 ## License
+${renderLicenseLink(License)}
 ${renderLicenseSection(License)}
 
 ## Contributing
