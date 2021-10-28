@@ -8,7 +8,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'Title',
-		message: 'Enter the projects title.',
+		message: "Enter the project's title: ",
 		validate: input => {
 			if (input) return true;
 			else {
@@ -21,7 +21,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'Description',
-		message: 'Enter a description of the project. ',
+		message: 'Enter a description of the project: ',
 		validate: input => {
 			if (input) return true;
 			else {
@@ -33,7 +33,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'Installation',
-		message: 'Enter installation instructions. ',
+		message: 'Enter installation instructions: ',
 		validate: input => {
 			if (input) return true;
 			else {
@@ -45,7 +45,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'Usage',
-		message: 'Enter usage information. ',
+		message: 'Enter usage information: ',
 		validate: input => {
 			if (input) return true;
 			else {
@@ -57,7 +57,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'Contributing',
-		message: 'Enter contribution guidelines. ',
+		message: 'Enter guidelines for contributing to the project: ',
 		validate: input => {
 			if (input) return true;
 			else {
@@ -69,7 +69,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'Tests',
-		message: 'Enter test instructions. ',
+		message: 'Enter instructions for testing. ',
 		validate: input => {
 			if (input) return true;
 			else {
@@ -81,13 +81,13 @@ const questions = [
 	{
 		type: 'list',
 		name: 'License',
-		message: 'Choose a License (required). ',
+		message: 'Choose a License: ',
 		choices: Object.keys(licenses),
 	},
 	{
 		type: 'input',
 		name: 'Github',
-		message: 'Contact info: Enter a github username. (required) ',
+		message: 'Contact info: Enter your github username: ',
 		validate: input => {
 			if (input) return true;
 			else {
@@ -99,7 +99,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'Email',
-		message: 'Contact info: Enter an email address.',
+		message: 'Contact info: Enter an email address: ',
 		validate: input => {
 			if (input) return true;
 			else {
