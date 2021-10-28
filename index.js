@@ -1,18 +1,18 @@
 // Use Inquirer from https://www.npmjs.com/package/inquirer
 const inquirer = require('inquirer');
-const generateReadme = require('./utils/template.js');
-
-const licenses = require('./src/licenses.json');
+const generateMarkdown = require('./utils/generateMarkdown.js');
+const licenses = require('./utils/licenses.json');
+const fs = require('fs');
 
 const questions = [
 	{
 		type: 'input',
 		name: 'Title',
-		message: 'Enter the projects title. (required) ',
+		message: 'Enter the projects title.',
 		validate: input => {
 			if (input) return true;
 			else {
-				console.log('Project title is required. ');
+				console.log('This information is required.');
 				return false;
 			}
 		},
@@ -22,26 +22,61 @@ const questions = [
 		type: 'input',
 		name: 'Description',
 		message: 'Enter a description of the project. ',
+		validate: input => {
+			if (input) return true;
+			else {
+				console.log('This information is required.');
+				return false;
+			}
+		},
 	},
 	{
 		type: 'input',
 		name: 'Installation',
 		message: 'Enter installation instructions. ',
+		validate: input => {
+			if (input) return true;
+			else {
+				console.log('This information is required.');
+				return false;
+			}
+		},
 	},
 	{
 		type: 'input',
 		name: 'Usage',
 		message: 'Enter usage information. ',
+		validate: input => {
+			if (input) return true;
+			else {
+				console.log('This information is required.');
+				return false;
+			}
+		},
 	},
 	{
 		type: 'input',
 		name: 'Contributing',
 		message: 'Enter contribution guidelines. ',
+		validate: input => {
+			if (input) return true;
+			else {
+				console.log('This information is required.');
+				return false;
+			}
+		},
 	},
 	{
 		type: 'input',
 		name: 'Tests',
 		message: 'Enter test instructions. ',
+		validate: input => {
+			if (input) return true;
+			else {
+				console.log('This information is required.');
+				return false;
+			}
+		},
 	},
 	{
 		type: 'list',
@@ -56,7 +91,7 @@ const questions = [
 		validate: input => {
 			if (input) return true;
 			else {
-				console.log('');
+				console.log('This information is required.');
 				return false;
 			}
 		},
@@ -65,6 +100,13 @@ const questions = [
 		type: 'input',
 		name: 'Email',
 		message: 'Contact info: Enter an email address.',
+		validate: input => {
+			if (input) return true;
+			else {
+				console.log('This information is required.');
+				return false;
+			}
+		},
 	},
 ];
 
@@ -73,14 +115,28 @@ const init = () => {
 	return inquirer.prompt(questions);
 };
 
-const writeToFile = () => {};
+const writeToFile = (filename, data) => {
+	return new Promise((resolve, reject) => {
+		fs.writeFile(filename, data, err => {
+			if (err) {
+				reject(err);
+				return;
+			}
+			resolve({
+				ok: true,
+				message: 'file created',
+			});
+		});
+	});
+};
 
 init()
 	.then(data => {
 		// console.log(data);
-		return generateReadme(data);
+		return generateMarkdown(data);
 	})
 	.then(data => {
+		// console.log(data);
 		writeToFile('./dist/README.md', data);
 	})
 	.catch(err => {
