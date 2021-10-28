@@ -39,7 +39,7 @@ ISC
 
 ## Usage
 
-![screencapture]
+![screencapture](https://github.com/jamestw13/pro-readme-generator/blob/main/readme%20generation.gif)
 
 ## Contributing
 
@@ -47,4 +47,4 @@ You're welcome to write issues on this repository or fork and do your own develo
 
 ## Questions
 
-[Contact asdf with questions](https://www.github.com/jamestw13) OR [Send and email](mailto:jamestw13@gmail.com)
+[Contact jamestw13 with questions](https://www.github.com/jamestw13) OR [Send and email](mailto:jamestw13@gmail.com)
